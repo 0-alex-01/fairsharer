@@ -16,22 +16,26 @@ def fair_sharer(values, num_iterations, share=0.1):
         """
     
     for iter in range(num_iterations):
+        # reset largest number and index
         largest = 0
         largest_idx = 0
         for i, val in enumerate(values):
-            if val> largest:
+            # find largest number and corresponding index
+            if val > largest:
                 largest = val
                 largest_idx = i
         
-        l_idx = largest_idx-1
-        r_idx = largest_idx +1
+        # get neighbouring indices
+        l_idx = largest_idx - 1
+        r_idx = largest_idx + 1
         share_v = largest * share
-        if largest_idx == len(values)-1:
+        if largest_idx == len(values)- 1:
             r_idx = 0
-        
+
+        # update list
         values[l_idx] = values[l_idx] + share_v
         values[r_idx] = values[r_idx] + share_v
-        values[largest_idx] = values[largest_idx] - share_v*2
+        values[largest_idx] = values[largest_idx] - share_v * 2
 
     return values
 
